@@ -1,0 +1,17 @@
+CREATE TABLE events (
+  id VARCHAR(12) PRIMARY KEY,
+  naam VARCHAR(80) NOT NULL,
+  thema VARCHAR(20) NOT NULL,
+  admin_key VARCHAR(16) NOT NULL,
+  aangemaakt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE media (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  event_id VARCHAR(12) NOT NULL,
+  bestandsnaam VARCHAR(40) NOT NULL,
+  origineel VARCHAR(120),
+  soort ENUM('image','video') NOT NULL,
+  aangemaakt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE
+);
